@@ -823,7 +823,7 @@ class RequestLock(object):
         If there were only one queue, it would end up a the front of the queue again (it was the
         highest priority item, after all).
         
-        That is, uou would never make any progress on the queue because you would just pop and
+        That is, you would never make any progress on the queue because you would just pop and
         push the same item over and over!
         
         But since this data structure uses TWO queues, the pushed item will be put on the
@@ -854,7 +854,7 @@ class RequestLock(object):
         def pushNone(self):
             # 'None' items are special: they represent a native thread and must get top priority
             # Therefore, push directly to the 'popping' thread.
-            heapq.heappush(self._pushing_queue, None)
+            heapq.heappush(self._popping_queue, None)
         
         def popNone(self):
             if self._popping_queue and self._popping_queue[0] is None:
